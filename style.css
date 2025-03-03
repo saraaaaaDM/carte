@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Aligner les cartes en haut de la page */
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+#conteneur-carte {
+  display: flex;
+  flex-wrap: wrap; /* Permet aux cartes de s’enrouler sur plusieurs lignes */
+  justify-content: center; /* Centrer les cartes horizontalement */
+  gap: 20px; /* Ajoute un espace entre les cartes */
+  width: 100%;
+  max-width: 1200px; /* Ajuste la largeur du conteneur si nécessaire */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.carte {
+  display: flex;
+  flex-direction: column;
+  width: 400px; /* Carte plus large */
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  min-height: 300px;
+  background-color: #f9f9f9;
+}
+
+.carte-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.carte-header img {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.carte-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-plus-photos {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-plus-photos:hover {
+  background-color: #0056b3;
+}
+
+.galerie-photos {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.galerie-photos img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+
+/* Ajout du bouton de bascule */
+#toggle-view {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #014201;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  z-index: 1000;
+}
+
+#toggle-view:hover {
+  background-color: #009700;
+}
+
+/* Mode mosaïque (par défaut) */
+#conteneur-carte {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Mode carrousel */
+#conteneur-carte.carrousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px;
+  padding-left: 42.4%; /* Ajoute un décalage pour voir la première carte */
+  gap: 20px;
+  scroll-snap-type: x mandatory; /* Effet de défilement fluide */
+}
+
+#conteneur-carte.carrousel .carte {
+  flex: 0 0 80%; /* Taille de la carte */
+  scroll-snap-align: center; /* Centre la carte lors du scroll */
+}
+
+
