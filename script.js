@@ -1,4 +1,3 @@
-// Tableau contenant plusieurs amulettes
 let amulettes = [
   {
     id: 1,
@@ -137,14 +136,14 @@ function creerCarte(objet) {
   return carte;
 }
 
-// Génération des cartes
+
 let conteneur = document.getElementById("conteneur-carte");
 amulettes.forEach(amulette => {
   let carte = creerCarte(amulette);
   conteneur.appendChild(carte);
 });
 
-// Gestion du mode d'affichage (mosaïque <-> carrousel)
+
 document.getElementById("toggle-view").addEventListener("click", function () {
   conteneur.classList.toggle("carrousel");
 });
