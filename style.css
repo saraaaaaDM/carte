@@ -84,7 +84,7 @@ body {
   top: 20px;
   right: 20px;
   padding: 10px 15px;
-  background-color: #014201;
+  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
@@ -94,7 +94,7 @@ body {
 }
 
 #toggle-view:hover {
-  background-color: #009700;
+  background-color: #0056b3;
 }
 
 
