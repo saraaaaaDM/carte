@@ -19,13 +19,6 @@ body {
   box-sizing: border-box;
 }
 
-#conteneur-carte.carrousel {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-left: 100px;
-
 .carte {
   display: flex;
   flex-direction: column;
@@ -119,7 +112,7 @@ body {
   flex-wrap: nowrap;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 20px;
+  padding: 100px;
   padding-left: 42.4%; /* Ajoute un décalage pour voir la première carte */
   gap: 20px;
   scroll-snap-type: x mandatory; /* Effet de défilement fluide */
