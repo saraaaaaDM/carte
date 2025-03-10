@@ -24,7 +24,7 @@ body {
   flex-wrap: nowrap;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding-left: 20px;
+  padding-left: 50px;
 
 .carte {
   display: flex;
