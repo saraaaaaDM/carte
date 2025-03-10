@@ -50,99 +50,46 @@ let amulettes = [
 ];
 
 function creerCarte(objet) {
-  let carte = document.createElement("div");
-  carte.classList.add("carte");
-
-  let header = document.createElement("div");
-  header.classList.add("carte-header");
-
-  let image = document.createElement("img");
-  image.src = `./img/${objet.image}`;
-  image.alt = objet.nom;
-
-  let titre = document.createElement("h2");
-  titre.textContent = objet.nom;
-
-  header.appendChild(image);
-  header.appendChild(titre);
-
-  let body = document.createElement("div");
-  body.classList.add("carte-body");
-
-  let description = document.createElement("p");
-  description.textContent = objet.description;
-
-  let prix = document.createElement("p");
-  prix.textContent = `Prix : ${objet.prix} pièces d'or`;
-
-  let rarete = document.createElement("p");
-  rarete.textContent = `Rareté : ${objet.rarete ? "Oui" : "Non"}`;
-
-  let date = document.createElement("p");
-  date.textContent = `Découverte : ${objet.dateDecouverte}`;
-
-  let proprietaire = document.createElement("p");
-  proprietaire.textContent = `Propriétaire : ${objet.proprietaireActuel.nom}`;
-
-  let pouvoirs = document.createElement("div");
-  pouvoirs.classList.add("carte-pouvoirs");
-  let titrePouvoirs = document.createElement("h3");
-  titrePouvoirs.textContent = "Pouvoirs :";
-  pouvoirs.appendChild(titrePouvoirs);
-
-  objet.pouvoirs.forEach(pouvoir => {
-    let span = document.createElement("span");
-    span.textContent = pouvoir;
-    pouvoirs.appendChild(span);
-  });
-
-  body.appendChild(description);
-  body.appendChild(prix);
-  body.appendChild(rarete);
-  body.appendChild(date);
-  body.appendChild(proprietaire);
-  body.appendChild(pouvoirs);
-
-  let bouton = document.createElement("button");
-  bouton.textContent = "Voir plus de photos";
-  bouton.classList.add("btn-plus-photos");
-
-  let galerie = document.createElement("div");
-  galerie.classList.add("galerie-photos");
-  galerie.style.display = "none";
-
-  objet.imagesSupp.forEach(img => {
-    let imgElement = document.createElement("img");
-    imgElement.src = `./img/${img}`;
-    imgElement.alt = "Photo supplémentaire";
-    galerie.appendChild(imgElement);
-  });
-
-  bouton.addEventListener("click", function () {
-    if (galerie.style.display === "none") {
-      galerie.style.display = "flex";
-      bouton.textContent = "Masquer les photos";
-    } else {
-      galerie.style.display = "none";
-      bouton.textContent = "Voir plus de photos";
-    }
-  });
-
-  carte.appendChild(header);
-  carte.appendChild(body);
-  carte.appendChild(bouton);
-  carte.appendChild(galerie);
-
-  return carte;
+  return `
+    <div class="carte">
+      <div class="carte-header">
+        <img src="./img/${objet.image}" alt="${objet.nom}">
+        <h2>${objet.nom}</h2>
+      </div>
+      <div class="carte-body">
+        <p>${objet.description}</p>
+        <p>Prix : ${objet.prix} pièces d'or</p>
+        <p>Rareté : ${objet.rarete ? "Oui" : "Non"}</p>
+        <p>Découverte : ${objet.dateDecouverte}</p>
+        <p>Propriétaire : ${objet.proprietaireActuel.nom}</p>
+        <h3>Pouvoirs :</h3>
+        <ul>
+          ${objet.pouvoirs.map(pouvoir => `<li>${pouvoir}</li>`).join('')}
+        </ul>
+        <button class="btn-plus-photos">Voir plus de photos</button>
+        <div class="galerie-photos" style="display: none;">
+          ${objet.imagesSupp.map(img => `<img src="./img/${img}" alt="Photo supplémentaire">`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
 }
 
-
 let conteneur = document.getElementById("conteneur-carte");
-amulettes.forEach(amulette => {
-  let carte = creerCarte(amulette);
-  conteneur.appendChild(carte);
-});
+conteneur.innerHTML = amulettes.map(creerCarte).join('');
 
+document.querySelectorAll(".btn-plus-photos").forEach((btn, index) => {
+  btn.addEventListener("click", function () {
+    let galerie = btn.nextElementSibling;
+    if (galerie.style.display === "none") {
+      galerie.style.display = "flex";
+      btn.textContent = "Masquer les photos";
+    } else {
+      galerie.style.display = "none";
+      btn.textContent = "Voir plus de photos";
+    }
+  });
+});
 
 document.getElementById("toggle-view").addEventListener("click", function () {
   conteneur.classList.toggle("carrousel");
