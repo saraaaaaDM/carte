@@ -113,7 +113,7 @@ body {
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 20px;
-  padding-left: 70%; /* Ajoute un décalage pour voir la première carte */
+  padding-left: 70px; /* Ajoute un décalage pour voir la première carte */
   gap: 50px;
   scroll-snap-type: x mandatory; /* Effet de défilement fluide */
 }
